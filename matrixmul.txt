@@ -1,0 +1,7 @@
+start-all.sh
+jps
+hdfs dfs -mkdir /m
+hdfs dfs -copyFromLocal /home/hdoop/M1.txt /m
+hdfs dfs -copyFromLocal /home/hdoop/M2.txt /m
+hadoop jar /home/hdoop/hadoop-streaming-2.7.3.jar -input /m/* -output /m/output3 -mapper /home/hdoop/mapper.py -reducer /home/hdoop/reducer.py
+hdfs dfs -cat /m/output3/part-00000
